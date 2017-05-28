@@ -129,4 +129,18 @@ public class BbsDAO {
 		}
 		return null;
 	}
+	
+	public int update(int bbsID, String bbsTitle, String bbsContent){
+		String SQL = "UPDATE BBS SET bbsTitle =?, bbsContent = ? WHERE bbsID = ?";
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1; //db오류
+	}
 }
