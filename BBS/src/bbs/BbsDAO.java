@@ -143,4 +143,17 @@ public class BbsDAO {
 		}
 		return -1; //db오류
 	}
+	
+	public int delete(int bbsID){
+		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1; // db 오류
+	}
+	
 }
